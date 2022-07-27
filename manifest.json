@@ -4,8 +4,8 @@
   "theme_color": "#ffcbe4",
   "background_color": "#fa99ca",
   "display": "standalone",
-  "scope": "/",
-  "start_url": "https://enigmatic-retreat-19839.herokuapp.com",
+  "scope": "https://safe-hollows-49732.herokuapp.com/",
+  "start_url": "https://safe-hollows-49732.herokuapp.com",
   "description": "Multi Banking Application",
   "orientation": "any",
   "icons": [
