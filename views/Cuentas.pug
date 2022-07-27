@@ -1,0 +1,10 @@
+title Cuentas
+for account in accounts
+ div
+ hidden 
+ h2=account.name	
+ li=account.institutionName
+ li=account.type
+ form(action='http://localhost:3000/accountDetails' method='POST')
+  button(type='submit' name='id' value=account.id) Detalles
+          

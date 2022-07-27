@@ -1,0 +1,18 @@
+av.navbar.navbar-inverse
+  .container-fluid
+    .navbar-header
+      a.navbar-brand(href='/') My Website!
+    ul.nav.navbar-nav
+      li.active
+        a(href='/') Home
+      li
+        a(href='/Cuentas') Cuentas
+      li
+        a(href='/Transacciones') Transacciones
+        
+    ul.nav.navbar-nav.navbar-right
+      li
+        a(href='/user/me')
+          | You are logged in as
+          | #{email}
+          
