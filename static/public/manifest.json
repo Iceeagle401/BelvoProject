@@ -10,7 +10,7 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "/static/public/img/avatar.png",
+      "src": "/img/avatar.png",
       "sizes": "512x512"
     },
    
