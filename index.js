@@ -100,7 +100,7 @@ app.get('/Cuentas',async function(req,res){
 
 var allAccountsArray = registro;
 var allAccounts = [];
- await new Promise(resolve => setTimeout(resolve, 5000));
+ await new Promise(resolve => setTimeout(resolve, 15000));
     registro.forEach(account =>{       
         var elem = new Object();
         elem["id"] = account.id;
@@ -132,7 +132,7 @@ app.get('/Transacciones',async function(req,res){
 });
 var allTransactionsArray = transacciones;
 var allArrays = [];
- await new Promise(resolve => setTimeout(resolve, 5000));
+ await new Promise(resolve => setTimeout(resolve, 15000));
     transacciones.forEach(transaction =>{       
         var elem = new Object();
         elem["id"] = transaction.id;
