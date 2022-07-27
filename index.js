@@ -6,10 +6,12 @@ const path = require('path');
 const PORT = 3000;
 const router = express.Router();
 const bodyParser = require('body-parser');
-const linkid= '8df72c9a-5c40-491b-91d3-fd47433ac49d';
+var linkid= '8df72c9a-5c40-491b-91d3-fd47433ac49d';
 var registro;
+var transacciones;
 var nombre;
 var apellido;
+var bank;
 var client = new belvo(
   '6317b737-dbdd-4aef-8e16-eac0b657408b',
   'aSKlmI8QdkhMcqy3IyWpz7WB8aj@@BA4Tf79QiZUpfkvPbBBZf0w7xMdiZiegFdt',
@@ -19,30 +21,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, '/static/public')));
 app.use(favicon(path.join(__dirname, '/static/public/favicon/android-icon-32x32.png')));
-client.connect()
-  .then(function () {
-   client.accounts.retrieve(linkid)
-      .then(function (res) {
-		  registro=res;
-        console.log(registro);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-});
 
 
 
-client.connect()
-  .then(function () {
-    client.accounts.list()
-      .then(function (res) {
-        console.log(res);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-});
+
+
+
  // client.connect().then(function () {
     // console.log(options);
     // client.widgetToken
@@ -78,14 +62,46 @@ app.post('/HomeSession', (req, res) => {
   
   email=req.body.femail;
   password=req.body.fpassword;
+  bank=req.body.bank
+  client.connect()
+  .then(function () {
+    client.links.register(bank, email, password)
+      .then(function (res) {
+		   console.log(res);
+		  linkid=res.id;
+       
+		console.log(linkid);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+});
   res.render("HomeSession",{title: 'Bienvenido!', email: email});
 });
 
-app.get('/Cuentas',function(req,res){
+
+app.get('/HomePage', (req, res) => {
+  res.render("HomePage",{title: 'Bienvenido!', email: email});
+});
+
+app.get('/Cuentas',async function(req,res){
+	client.connect()
+  .then(function () {
+   client.accounts.retrieve(linkid)
+      .then(function (res) {
+		  registro=res;
+         // console.log(registro);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+});
+
+
 var allAccountsArray = registro;
 var allAccounts = [];
- 
-    allAccountsArray.forEach(account =>{       
+ await new Promise(resolve => setTimeout(resolve, 5000));
+    registro.forEach(account =>{       
         var elem = new Object();
         elem["id"] = account.id;
         elem["institutionName"] = account.institution.name;
@@ -95,11 +111,44 @@ var allAccounts = [];
         elem["category"]=account.category;
 
         allAccounts.push(elem);
-        console.log(elem);
+        // console.log(elem);
 		
     });
-	console.log(allAccounts);
+	// console.log(allAccounts);
     res.render('Cuentas',{accounts:allAccounts});
+  }); 
+  
+app.get('/Transacciones',async function(req,res){
+	client.connect()
+  .then(function () {
+    client.transactions.retrieve(linkid, '2019-01-01', { 'dateTo': '2022-07-27' })
+      .then(function (res) {
+		  transacciones=res;
+        // console.log(transacciones);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+});
+var allTransactionsArray = transacciones;
+var allArrays = [];
+ await new Promise(resolve => setTimeout(resolve, 5000));
+    transacciones.forEach(transaction =>{       
+        var elem = new Object();
+        elem["id"] = transaction.id;
+        elem["amount"] = transaction.amount;
+        elem["reference"]=transaction.reference;
+        elem["category"]=transaction.category;
+        elem["merchant"]=transaction.merchant.name;
+        elem["currency"]=transaction.currency;
+
+
+        allArrays.push(elem);
+        // console.log(elem);
+		
+    });
+	// console.log(allArrays);
+    res.render('Transacciones',{transactions:allArrays});
   }); 
 
   app.post('/accountDetails', (req, res) => {
