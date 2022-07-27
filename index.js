@@ -18,7 +18,7 @@ var client = new belvo(
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, '/static/public')));
-app.use(favicon(path.join(__dirname, '/static/public/favicon')));
+app.use(favicon(path.join(__dirname, '/static/public/favicon/android-icon-32x32.png')));
 client.connect()
   .then(function () {
    client.accounts.retrieve(linkid)
