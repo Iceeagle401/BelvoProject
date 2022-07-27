@@ -57,7 +57,7 @@ client.connect()
   // res.send(registro)
 // })
   
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Example app listening on port ${PORT}`)
 })
  console.log(__dirname);

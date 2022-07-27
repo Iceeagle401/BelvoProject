@@ -10,9 +10,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start":"node index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iceeagle401/BelvoProject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Iceeagle401/BelvoProject/issues"
+  },
+  "homepage": "https://github.com/Iceeagle401/BelvoProject#readme",
   "description": ""
 }
