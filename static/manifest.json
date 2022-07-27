@@ -5,7 +5,7 @@
   "background_color": "#fa99ca",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "https://enigmatic-retreat-19839.herokuapp.com",
   "description": "Multi Banking Application",
   "orientation": "any",
   "icons": [
