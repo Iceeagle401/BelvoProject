@@ -1,4 +1,5 @@
 var belvo = require('belvo').default;
+var favicon = require('serve-favicon');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -17,6 +18,7 @@ var client = new belvo(
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, '/static/public')));
+app.use(favicon(path.join(__dirname, '/static/public/favicon')));
 client.connect()
   .then(function () {
    client.accounts.retrieve(linkid)
