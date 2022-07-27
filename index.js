@@ -16,7 +16,7 @@ var client = new belvo(
 );
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.set("view engine", "pug");
-
+app.use(express.static(path.join(__dirname, '/static/public')));
 client.connect()
   .then(function () {
    client.accounts.retrieve(linkid)
@@ -114,6 +114,6 @@ var allAccounts = [];
 });
   email=req.body.femail;
   password=req.body.fpassword;
-  res.render("HomeSession",{title: 'Bienvenido!', email: email});
+  res.render("accountDetails",{title: 'Bienvenido!', email: email});
 });
 
