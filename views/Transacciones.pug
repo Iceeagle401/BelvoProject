@@ -1,12 +1,17 @@
 title transactions
 a(href='/HomePage') Home
-input(type=date id="test" name="fecha busqueda" value="2018-07-22" min="2018-01-01" max="2018-12-31")
+div
+form(action="/Transacciones" method="post")
+ input(type="date" id="fromDate1" name="fromDate" value=fromDate min="2018-01-01" max=today)
+ input(type="date" id="toDate" name="toDate" value=toDate min=fromDate1 max=today)
+ button(type="submit") Filtrar
 for transaction in transactions
  div
  hidden 
  h2=transaction.merchant
  li=transaction.amount
  li=transaction.currency
+ li=transaction.createdAt
  li=transaction.reference
  
           
