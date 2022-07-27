@@ -62,7 +62,7 @@ app.listen(process.env.PORT || 5000, () => {
 })
  console.log(__dirname);
 app.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/views/MyPage.html'));
+  res.sendFile(path.join(__dirname+'/views/index.html'));
   //__dirname : It will resolve to your project folder.
 });
 
