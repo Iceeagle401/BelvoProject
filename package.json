@@ -3,6 +3,7 @@
     "belvo": "^0.21.1",
     "body-parser": "^1.20.0",
     "express": "^4.18.1",
+    "pg": "^8.7.3",
     "pug": "^3.0.2"
   },
   "name": "belvotest",
@@ -14,7 +15,6 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Iceeagle401/BelvoProject.git"
