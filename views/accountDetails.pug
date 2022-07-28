@@ -1,3 +1,4 @@
+link(rel="stylesheet" href="css/style.css")
 title Detalles de cuenta
 a(href='/HomePage') Home
 a(href='/Cuentas') Cuentas
@@ -5,13 +6,13 @@ div
  h2=account.name
 for transaction in transactions
  div
- hidden 
- h2=transaction.merchant
- li=transaction.amount
- li=transaction.currency
- li=transaction.createdAt
- li=transaction.reference
- li=transaction.category
- li=transaction.name
+  hidden 
+  h2=transaction.merchant
+  li=transaction.amount
+  li=transaction.currency
+  li=transaction.createdAt
+  li=transaction.reference
+  li=transaction.category
+  li=transaction.name
  
           

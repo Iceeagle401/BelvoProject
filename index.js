@@ -254,30 +254,33 @@ var allAccounts = [];
     res.render('Cuentas',{accounts:allAccounts, balanceTotal:balanceTotal});
   }); 
   
-app.get('/Transacciones',async function(req,res){
-	//console.log(req);
+app.post('/Transacciones',async function(req,res){
+	console.log('hi');
 	if(req.body.fromDate != null)
 	{fromDate=req.body.fromDate;
 console.log('Entro uno');
+console.log(fromDate);
 	}
 	if(req.body.toDate != null)
-	{fromDate=req.body.toDate;
+	{toDate=req.body.toDate;
 console.log('Entro dos');
+console.log(toDate);
 	}
 	client.connect()
   .then(function () {
     client.transactions.retrieve(linkid, fromDate, { 'dateTo': toDate })
       .then(function (res) {
 		  transacciones=res;
-        //console.log(transacciones);
+        console.log(transacciones);
       })
       .catch(function (error) {
         console.log(error);
       });
 });
+ await new Promise(resolve => setTimeout(resolve, 15000));
 var allTransactionsArray = transacciones;
 var allArrays = [];
- await new Promise(resolve => setTimeout(resolve, 15000));
+
     transacciones.forEach(transaction =>{       
         var elem = new Object();
         elem["id"] = transaction.id;
@@ -286,7 +289,7 @@ var allArrays = [];
         elem["category"]=transaction.category;
         elem["merchant"]=transaction.merchant.name;
         elem["currency"]=transaction.currency;
-		elem["createdAt"]=transaction.created_at;
+		elem["createdAt"]=transaction.accounting_date;
 
 
         allArrays.push(elem);

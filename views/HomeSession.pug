@@ -4,12 +4,12 @@ av.navbar.navbar-inverse
     .navbar-header
       a.navbar-brand(href='/') Cerrar Sesion!
     ul.nav.navbar-nav
-      li.active
-        a(href='/Balances') Balance
       li
-        a(href='/Cuentas') Cuentas
+        form(action='/Cuentas' method='get')
+         button(type='submit' name='id' value='0') Cuentas
       li
-        a(href='/Transacciones') Transacciones
+        form(action='/Transacciones' method='POST')
+         button(type='submit' name='id' value='0') Transacciones
         
     ul.nav.navbar-nav.navbar-right
       li
