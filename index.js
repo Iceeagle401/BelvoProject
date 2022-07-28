@@ -13,6 +13,8 @@ var transacciones;
 var nombre;
 var apellido;
 var bank;
+var cuenta;
+var accountid;
 var balanceTotal=0.00;
 var fromDate="2022-01-01";
 var toDate = new Date().toISOString().split('T')[0];
@@ -205,20 +207,62 @@ client.connect()
   
   
 
-  app.post('/accountDetails', (req, res) => {
-  console.log(req.body.id);
+ app.post('/accountDetails', async function (req, res)  {
+  console.log(req.body.id)
+  accountid=req.body.id;
+  ;
   client.connect()
   .then(function () {
-    client.accounts.detail(req.body.id)
+	 
+    client.accounts.detail(accountid)
       .then(function (res) {
-        console.log(res);
+		  
+		  cuenta=res;
+       
       })
       .catch(function (error) {
         console.log(error);
       });
 });
+ await new Promise(resolve => setTimeout(resolve, 5000));
+ console.log(cuenta);
+client.connect()
+  .then(function () {
+    client.transactions.retrieve(linkid, fromDate,{ 'dateTo': toDate, 'account': cuenta.id })
+      .then(function (res) {
+		   console.log(res);
+		  transacciones=res;
+       
+      })
+      .catch(function (error) {
+		   console.log(req);
+        console.log(error);
+      });
+});
+var account=new Object();
+	account["name"]=cuenta.name;
+
+var allTransactionsArray = transacciones;
+var allArrays = [];
+ await new Promise(resolve => setTimeout(resolve, 15000));
+    transacciones.forEach(transaction =>{       
+        var elem = new Object();
+        elem["id"] = transaction.id;
+        elem["amount"] = transaction.amount;
+        elem["reference"]=transaction.reference;
+        elem["category"]=transaction.category;
+        elem["merchant"]=transaction.merchant.name;
+        elem["currency"]=transaction.currency;
+		elem["createdAt"]=transaction.created_at;
+		elem["name"]=transaction.account.name;
+
+
+        allArrays.push(elem);
+        // console.log(elem);
+		
+    });
   email=req.body.femail;
   password=req.body.fpassword;
-  res.render("accountDetails",{title: 'Bienvenido!', email: email});
+  res.render("accountDetails",{transactions:allArrays, account: account});
 });
 
