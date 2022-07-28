@@ -1,9 +1,10 @@
-link(rel="stylesheet" href="css/style.css")
+link(rel="stylesheet" href="css/style-accounts.css")
 title Cuentas2  
 
 a(href='/HomePage') Home
-h1 Balance Total Disponible
-h2 #{balanceTotal}
+div
+ h1 Balance Total Disponible
+ h2 #{balanceTotal}
 for account in accounts
  div 
   h2=account.name	
