@@ -1,8 +1,8 @@
 {
   "name": "BankMX",
   "short_name": "BankMX",
-  "theme_color": "#ffcbe4",
-  "background_color": "#fa99ca",
+  "theme_color": "#3355FF",
+  "background_color": "#3355FF",
   "display": "standalone",
   "scope": "/",
   "start_url": "https://enigmatic-retreat-19839.herokuapp.com",
