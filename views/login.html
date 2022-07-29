@@ -10,15 +10,9 @@
   <div class="jumbotron"  style="padding:40px;">
    
 	<h1>BanMX!</h1>
-   <form action="/HomeSession" method="POST">
-  User: <input type="text" name="femail" value="bnk00" required><br>
-  Password: <input type="password" name="fpassword" value="full" required><br>
-  <label for="Banco" required>Selecciona un banco:</label>
-  <select name="bank" id="bank">
-    <option value="erebor_mx_retail">Erebor</option>
-    <option value="gringotts_mx_retail">Gringotts</option>
-    <option value="gotham_mx_business">Gotham</option>
-  </select>
+   <form action="/logSession" method="POST">
+  User: <input type="text" name="femail" placeholder="juan@gmail.com" required><br>
+  Password: <input type="password" name="fpassword"  required><br>
  <button type="submit">Login</button>
 </form>
 	 

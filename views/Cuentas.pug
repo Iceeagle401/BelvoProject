@@ -1,15 +1,16 @@
+link(rel="stylesheet" href="css/style-accounts.css")
 title Cuentas2  
 
 a(href='/HomePage') Home
-h1 Balance Total Disponible
-h2 #{balanceTotal}
+div
+ h1 Balance Total Disponible
+ h2 #{balanceTotal}
 for account in accounts
- div
- hidden 
- h2=account.name	
- li=account.institutionName
- li=account.type
- li=account.balance
- form(action='/accountDetails' method='POST')
-  button(type='submit' name='id' value=account.id) Detalles
+ div 
+  h2=account.name	
+  li=account.institutionName
+  li=account.type
+  li=account.balance
+  form(action='/accountDetails' method='POST')
+   button(type='submit' name='id' value=account.id) Detalles
        
