@@ -304,7 +304,7 @@ app.post('/Transacciones', async function(req, res) {
         elem["category"] = transaction.category;
         elem["merchant"] = transaction.merchant.name;
         elem["currency"] = transaction.currency;
-        elem["createdAt"] = transaction.accounting_date;
+        elem["createdAt"] = transaction.value_date;
 
 
         allArrays.push(elem);
@@ -414,7 +414,7 @@ app.post('/accountDetails', async function(req, res) {
         elem["category"] = transaction.category;
         elem["merchant"] = transaction.merchant.name;
         elem["currency"] = transaction.currency;
-        elem["createdAt"] = transaction.created_at;
+        elem["createdAt"] = transaction.value_date;
         elem["name"] = transaction.account.name;
 
 
